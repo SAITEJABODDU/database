@@ -1,0 +1,29 @@
+CREATE TABLE SalesOrderDetails(
+    SalesOrderID INT NOT NULL,
+    CarrierTrackingNumber INT NULL,
+    OrderQuantity smallint NOT NULL,
+    ProductID int NOT NULL,
+    SpecialOfferID int,
+    ProductPrice INT NOT NULL,
+    ProductPriceDiscount INT NOT NULL,
+   )
+   INSERT INTO SalesOrderDetails VALUES(123,1001,2,151,10,2000,50)
+   SELECT * FROM  SalesOrderDetails
+
+
+   CREATE PROC SalesOrder(
+   @SalesOrderID INT ,
+    @CarrierTrackingNumber INT ,
+    @OrderQuantity smallint ,
+    @ProductID int ,
+    @SpecialOfferID int,
+    @ProductPrice INT ,
+    @ProductPriceDiscount INT
+   )
+   AS
+   BEGIN
+   INSERT INTO SalesOrderDetails
+   VALUES( @SalesOrderID,@CarrierTrackingNumber,@OrderQuantity,@ProductID,@SpecialOfferID,@ProductPrice,@ProductPriceDiscount)
+   END
+
+   EXEC SalesOrder 124,1002,3,152,20,4000,100
