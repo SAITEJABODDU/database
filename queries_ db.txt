@@ -1,0 +1,275 @@
+
+
+CREATE TABLE Department(
+	DEPARTMENT_ID int PRIMARY KEY NOT NULL,
+	DEPARTMENT_NAME varchar(20) NULL,
+	DEPARTMENT_ROLE varchar(20) NULL,
+	DEPARTMENT_LOCATION varchar(20) NULL,
+	DEPARTMENT_email varchar(30) NULL,
+	EMPLOYEE_ID varchar(30) NULL,
+)
+
+CREATE TABLE Employee(
+	EMPLOYEE_ID int  PRIMARY KEY NOT NULL,
+	EMPLOYEE_NAME varchar(20) NULL,
+	EMPLOYEE_MOBILENO int NULL,
+	EMPLOYEE_AGE int NULL,
+	EMPLOYEE_ADDRESS varchar(20) NULL,
+)
+select * from Employee
+UPDATE FROM Employee SET FORGEIN  KEY WHERE Employee_ID is PRIMARY KEY 
+ALTER TABLE Employee add  DEPARTMENT_ID int 
+
+CREATE TABLE Project(
+	PROJECT_ID int NOT NULL,
+	PROJECT_ROLE varchar(20) NULL,
+	PROJECT_DESCRIPTION varchar(50) NULL,
+	EMPLOYEE_ID varchar(30) NULL,
+	)
+	ALTER TABLE Project add  EMPLOYEE_NAME VARCHAR(20) 
+	select * from Project
+
+CREATE TABLE Supervisor(
+	SUPERVISOR_ID int NOT NULL,
+	SUPERVISOR_NAME varchar(20) NULL,
+	SUPERVISOR_MOBILENO int NULL,
+	SUPERVISOR_ADDRESS varchar(20) NULL,
+	)
+
+
+
+CREATE TABLE Reviews(
+    Employee_ID int primary key NOT NULL,
+    Personal_Rating INT NOT NULL,
+    Technical_Rating INT NOT NULL,
+    Manager_Rating INT NULL,
+	Description VARCHAR(100)
+    );
+	select * from Reviews
+	insert into Reviews( Employee_ID, Personal_Rating,Technical_Rating,Manager_Rating,Description) VALUES(1,3,3,4,'good')
+	insert into Reviews( Employee_ID, Personal_Rating,Technical_Rating,Manager_Rating,Description) VALUES(2,3,4,5,'very good')
+	insert into Reviews( Employee_ID, Personal_Rating,Technical_Rating,Manager_Rating,Description) VALUES(3,2,3,4,'Average')
+	insert into Reviews( Employee_ID, Personal_Rating,Technical_Rating,Manager_Rating,Description) VALUES(4,5,5,5,'Excellent')
+------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE STUDENTTABLE(
+ID INT,
+NAME VARCHAR(20),
+GMAIL VARCHAR(30),
+PRIMARY KEY(ID)
+)
+ INSERT INTO STUDENTTABLE(ID,NAME,GMAIL) VALUES(1,'SAI','SAI@123')
+ INSERT INTO STUDENTTABLE(ID,NAME,GMAIL) VALUES(2,'TEJA','TEJA@123')
+
+ SELECT * FROM STUDENTTABLE
+
+ CREATE TABLE CERTIFICATETABLE(
+ ID INT,
+ YEAR INT,
+ SEM INT,
+ PRIMARY KEY(ID)
+ )
+  INSERT INTO CERTIFICATETABLE(ID,YEAR,SEM) VALUES(101,2000,1)
+    INSERT INTO CERTIFICATETABLE(ID,YEAR,SEM) VALUES(1,2000,1)
+
+
+CREATE TABLE CERTIFICATE_LOG(
+ STUDENT_ID INT,
+ CERTIFICATE_ID INT,
+ RECEIVED_DATE date,
+ FOREIGN KEY(STUDENT_ID) REFERENCES STUDENTTABLE(ID),
+  FOREIGN KEY(CERTIFICATE_ID) REFERENCES CERTIFICATETABLE(ID)
+
+ )
+  INSERT INTO CERTIFICATE_LOG(STUDENT_ID,CERTIFICATE_ID,RECEIVED_DATE) VALUES(1,1,'10-8-2022')
+  INSERT INTO CERTIFICATE_LOG(STUDENT_ID,CERTIFICATE_ID,RECEIVED_DATE) VALUES(2,101,'11-8-2022')
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE Department(
+	DEPARTMENT_ID int PRIMARY KEY NOT NULL,
+	DEPARTMENT_NAME varchar(20) NULL,
+	DEPARTMENT_ROLE varchar(20) NULL,
+	DEPARTMENT_LOCATION varchar(20) NULL,
+	DEPARTMENT_email varchar(30) NULL,
+	EMPLOYEE_ID varchar(30) NULL,
+)
+
+CREATE TABLE Employee(
+	EMPLOYEE_ID int  PRIMARY KEY NOT NULL,
+	EMPLOYEE_NAME varchar(20) NULL,
+	EMPLOYEE_MOBILENO int NULL,
+	EMPLOYEE_AGE int NULL,
+	EMPLOYEE_ADDRESS varchar(20) NULL,
+)
+select * from Employee
+UPDATE FROM Employee SET FORGEIN  KEY WHERE Employee_ID is PRIMARY KEY 
+ALTER TABLE Employee add  DEPARTMENT_ID int 
+
+CREATE TABLE Project(
+	PROJECT_ID int NOT NULL,
+	PROJECT_ROLE varchar(20) NULL,
+	PROJECT_DESCRIPTION varchar(50) NULL,
+	EMPLOYEE_ID varchar(30) NULL,
+	)
+	ALTER TABLE Project add  EMPLOYEE_NAME VARCHAR(20) 
+	select * from Supervisor
+
+CREATE TABLE Supervisor(
+	SUPERVISOR_ID int PRIMARY KEY NOT NULL,
+	SUPERVISOR_NAME varchar(20) NULL,
+	SUPERVISOR_MOBILENO int NULL,
+	SUPERVISOR_ADDRESS varchar(20) NULL,
+	)
+	ALTER TABLE Supervisor ADD EMPLOYEE_ID INt
+
+CREATE TABLE Project(
+ PROJECT_ID INT,
+ PROJECT_DURATION INT,
+ PROJECT_COMPLETED INT,
+
+ FOREIGN KEY(PROJECT_ID) REFERENCES Department(DEPARTMENT_ID),
+ FOREIGN KEY(PROJECT_ROLE) REFERENCES Employee(EMPLOYEE_ID),
+ FOREIGN KEY(PROJECT_DESC) REFERENCES Supervisor(SUPERVISOR_ID)
+)
+-------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE STUDENTTABLE(
+ID INT,
+NAME VARCHAR(20),
+GMAIL VARCHAR(30),
+PRIMARY KEY(ID)
+)
+ INSERT INTO STUDENTTABLE(ID,NAME,GMAIL) VALUES(1,'SAI','SAI@123')
+ INSERT INTO STUDENTTABLE(ID,NAME,GMAIL) VALUES(2,'TEJA','TEJA@123')
+
+ SELECT * FROM STUDENTTABLE
+
+ CREATE TABLE CERTIFICATETABLE(
+ ID INT,
+ YEAR INT,
+ SEM INT,
+ PRIMARY KEY(ID)
+ )
+  INSERT INTO CERTIFICATETABLE(ID,YEAR,SEM) VALUES(101,2000,1)
+    INSERT INTO CERTIFICATETABLE(ID,YEAR,SEM) VALUES(1,2000,1)
+
+
+CREATE TABLE CERTIFICATE_LOG(
+ STUDENT_ID INT,
+ CERTIFICATE_ID INT,
+ RECEIVED_DATE date,
+ FOREIGN KEY(STUDENT_ID) REFERENCES STUDENTTABLE(ID),
+  FOREIGN KEY(CERTIFICATE_ID) REFERENCES CERTIFICATETABLE(ID)
+
+ )
+  INSERT INTO CERTIFICATE_LOG(STUDENT_ID,CERTIFICATE_ID,RECEIVED_DATE) VALUES(1,1,'10-8-2022')
+  INSERT INTO CERTIFICATE_LOG(STUDENT_ID,CERTIFICATE_ID,RECEIVED_DATE) VALUES(2,101,'11-8-2022')
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+19-09-2022
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+select * from production.product
+select * from production.productinventory
+select * from production.location
+Select PP.ProductID, PP.[Name], PP.ProductNumber,SUM(PPI.Quantity) AS TotalQuantity
+from Production.Product PP
+inner join Production.ProductInventory PPI
+on PP.ProductID= PPI.ProductID
+Group By PP.ProductID, PP.[Name], PP.ProductNumber
+
+
+
+select * from Production.Product
+select * from Production.ProductInventory
+select * from Production.Location
+select * from Production.ProductListPriceHistory
+
+Select ProductID, Quantity, Location,PP.[Name], PP.ProductNumber,SUM(PPI.Quantity) AS TotalQuantity
+from Product,ProductListPriceHistory,ProductInventory,Location
+inner join Production.ProductInventory PPI
+on PP.ProductID= PPI.ProductID,
+Group By PP.ProductID, PP.[Name], PP.ProductNumber
+
+
+
+select LocationID, sum(Quantity) from production.ProductInventory group by LocationID
+select [name], productsubcategoryid from production.Product
+select ReorderPoint, [Name],ProductID
+from  production.Product
+--------------------------------------------------------------------------------------------------------------------------------------------
+20-09-2022
+--------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE Artist (
+    ArtistId INT NOT NULL,
+    ArtistName CHAR(50) NULL,
+    PRIMARY KEY  (ArtistId)
+);
+
+
+
+CREATE TABLE Album (
+    ArtistId INT NOT NULL,
+    AlbumId INT NOT NULL ,
+    AlbumName CHAR(30) NULL,
+    ReleaseYear DATE NULL,
+    PRIMARY KEY  (AlbumId),
+    FOREIGN KEY (ArtistId) REFERENCES Artist(ArtistId)
+);
+
+
+
+CREATE TABLE Track (
+    TrackId INT NOT NULL,
+    TrackName CHAR(60) NULL,
+    Writer CHAR(50) NULL,
+    ArtistId INT NOT NULL,
+    AlbumId INT NOT NULL,
+    PRIMARY KEY  (ArtistId,AlbumId,TrackId),
+    FOREIGN KEY (ArtistId) REFERENCES Artist(ArtistId),
+    FOREIGN KEY (AlbumId) REFERENCES Album (AlbumId)
+);
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+21-09-2022
+-----------------------------------------------------------------------------------------------------------------------------------------------
+CREATE PROCEDURE SALESORDER
+AS
+BEGIN
+SELECT SalesorderID,SalesOrderDetailID,OrderQty,ProductID
+FROM sales.SalesOrderDetail
+WHERE SpecialOfferID=1
+end
+
+----task-----
+
+CREATE TABLE SalesOrderDetails(
+    SalesOrderID INT NOT NULL,
+    CarrierTrackingNumber INT NULL,
+    OrderQuantity smallint NOT NULL,
+    ProductID int NOT NULL,
+    SpecialOfferID int,
+    ProductPrice INT NOT NULL,
+    ProductPriceDiscount INT NOT NULL,
+   )
+   INSERT INTO SalesOrderDetails VALUES(123,1001,2,151,10,2000,50)
+   SELECT * FROM  SalesOrderDetails
+
+
+   CREATE PROC SalesOrder(
+   @SalesOrderID INT ,
+    @CarrierTrackingNumber INT ,
+    @OrderQuantity smallint ,
+    @ProductID int ,
+    @SpecialOfferID int,
+    @ProductPrice INT ,
+    @ProductPriceDiscount INT
+   )
+   AS
+   BEGIN
+   INSERT INTO SalesOrderDetails
+   VALUES( @SalesOrderID,@CarrierTrackingNumber,@OrderQuantity,@ProductID,@SpecialOfferID,@ProductPrice,@ProductPriceDiscount)
+   END
+
+   EXEC SalesOrder 124,1002,3,152,20,4000,100
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
